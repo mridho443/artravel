@@ -33,32 +33,36 @@ include "../Client.php";
                   <th scope="col">ID User</th>
                   <th scope="col">Username</th>
                   <th scope="col">Email</th>
+                  <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
                 $dataAdminAll = $client->read_all_admin();
-                foreach ($dataAdminAll as $row) {?>
-                 
-                        <tr>
-                            <th scope='row'><?=$row-$id_user ?></th>
-                            <td>
-                              <?=$row->username?>
-                          </td>
-                            <td>
-                              <?=$row->email?>
-                          </td>
-                       
-                    
-                 
-                  <td align="center">
-                    <a href="update_admin.php?id=" class="btn btn-sm btn-warning"><i
-                        class="fas fa-fw fa-edit"></i>Update</a>
-                    <a href="koneksi/delete_admin.php?id=" class="btn btn-sm btn-danger"
-                      onclick="return confirm('Are you sure?')"><i class="fas fa-fw fa-trash"></i>Delete</a>
-                  </td>
+                print_r($dataAdminAll);
+                foreach ($dataAdminAll as $row) { ?>
 
-                  <?php echo "</tr>";
+                  <tr>
+                    <td>
+                      <?= $row->id_user ?>
+                    </td>
+                    <td>
+                      <?= $row->username ?>
+                    </td>
+                    <td>
+                      <?= $row->email ?>
+                    </td>
+
+
+
+                    <td align="center">
+                      <a href="update_admin.php?id=" class="btn btn-sm btn-warning"><i
+                          class="fas fa-fw fa-edit"></i>Update</a>
+                      <a href="koneksi/delete_admin.php?id=" class="btn btn-sm btn-danger"
+                        onclick="return confirm('Are you sure?')"><i class="fas fa-fw fa-trash"></i>Delete</a>
+                    </td>
+
+                    <?php echo "</tr>";
                 } ?>
 
 

@@ -58,9 +58,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $id_user = filter($_GET['id_user']);
         $data = $database->read_admin($id_user);
         echo json_encode($data);
-    } elseif($_GET['aksi'] == 'read_all_admin') {
+    // } elseif($_GET['aksi'] == 'read_all_admin') {
+    //     $data = $database->read_all_admin();
+    //     echo json_encode($data);
+    // }
+    }else{
         $data = $database->read_all_admin();
-        echo json_encode($data);
+            echo json_encode($data);
     }
 
     unset($postdata, $data, $id_user, $database);
