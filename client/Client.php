@@ -27,7 +27,7 @@ class Client
         $data = json_decode($response);
         unset($client, $response);
         return $data;
-     
+
     }
 
     public function read_admin($id_user)
@@ -40,18 +40,19 @@ class Client
         $data = json_decode($response);
         unset($id_barang, $client, $response);
         return $data;
-        
+
     }
 
-    public function create_admin($data)
+    public function create_admin($data2)
     {
-        $data = '{  "id_user":"' . $data['id_user'] . '",
-                    "username":"' . $data['username'] . '",
-                    "password":"' . $data['password'] . '",
-                    "nama":"' . $data['nama'] . '",
-                    "email":"' . $data['email'] . '",
-                    "aksi":"' . $data['aksi'] . '"
+        $data = '{  
+                    "username":"' . $data2['username'] . '",
+                    "password":"' . $data2['password'] . '",
+                    "nama":"' . $data2['nama'] . '",
+                    "email":"' . $data2['email'] . '",
+                    "aksi":"' . $data2['aksi'] . '"
                 }';
+        
         $c = curl_init();
         curl_setopt($c, CURLOPT_URL, $this->url);
         curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
@@ -103,7 +104,7 @@ class Client
 
 }
 
-$url = 'http://192.168.2.240/ARTRAVEL/server/server.php';
+$url = 'http://localhost/ARTRAVEL/server/server.php';
 // buat objek baru dari class client
 $client = new Client($url);
 ?>

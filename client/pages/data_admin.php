@@ -1,9 +1,7 @@
 <?php
 include "../Client.php";
 ?>
-<?php include 'header.php';
-
-?>
+<?php include 'header.php'; ?>
 
 
 <main id="main" class="main">
@@ -32,6 +30,7 @@ include "../Client.php";
                 <tr>
                   <th scope="col">ID User</th>
                   <th scope="col">Username</th>
+                  <th scope="col">Nama</th>
                   <th scope="col">Email</th>
                   <th scope="col">Aksi</th>
                 </tr>
@@ -39,7 +38,7 @@ include "../Client.php";
               <tbody>
                 <?php
                 $dataAdminAll = $client->read_all_admin();
-      
+
                 foreach ($dataAdminAll as $row) { ?>
 
                   <tr>
@@ -50,15 +49,18 @@ include "../Client.php";
                       <?= $row->username ?>
                     </td>
                     <td>
+                      <?= $row->nama ?>
+                    </td>
+                    <td>
                       <?= $row->email ?>
                     </td>
 
 
 
                     <td align="center">
-                      <a href="update_admin.php?id=" class="btn btn-sm btn-warning"><i
+                      <a href="update_admin.php?id_user=<?= $row->id_user ?>" class="btn btn-sm btn-warning"><i
                           class="fas fa-fw fa-edit"></i>Update</a>
-                      <a href="koneksi/delete_admin.php?id=" class="btn btn-sm btn-danger"
+                      <a href="../proses.php?aksi=delete_admin&id_user=<?= $row->id_user ?>" class="btn btn-sm btn-danger"
                         onclick="return confirm('Are you sure?')"><i class="fas fa-fw fa-trash"></i>Delete</a>
                     </td>
 
@@ -96,46 +98,10 @@ include "../Client.php";
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
 
-<script>
-  // JavaScript code to dynamically add input fields
-  const addInputButton = document.getElementById('add-input2');
-  const inputContainer = document.getElementById('input-container2');
-
-  addInputButton.addEventListener('click', function () {
-    const newRow = document.createElement('div');
-    newRow.className = 'row';
-
-    newRow.innerHTML = `
-                    <div class="col-3 mb-3">
-                      <label for="inputText" class="col-sm-12 col-form-label">Username</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" name="username[]">
-                      </div>
-                    </div>
-
-                    <div class="col-3 mb-3">
-                      <label for="inputText" class="col-sm-12 col-form-label">Password</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" name="password[]">
-                      </div>
-                    </div>
-                    <div class="col-3 mb-3">
-                      <label for="inputText" class="col-sm-12 col-form-label">Nama</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" name="nama[]">
-                      </div>
-                    </div>
-
-                    <div class="col-3 mb-3">
-                      <label for="inputEmail" class="col-sm-12 col-form-label">Email</label>
-                      <div class="col-sm-10">
-                        <input type="email" class="form-control" name="email[]">
-                      </div>
-                    </div>
-        `;
-    inputContainer.appendChild(newRow);
-  });
-</script>
 </body>
 
 </html>
+
+<?php
+unset($client);
+?>

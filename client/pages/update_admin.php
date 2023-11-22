@@ -1,35 +1,11 @@
 <?php
-session_start();
-include "koneksi/koneksi.php";
-$isLogin = $_SESSION['isLoginUser'] ?? "";
-if ($isLogin != "logged") {
-  header('location: index.php');
-}
-
-$id_role = $_SESSION['id_role'];
-if ($id_role == 3) {
-  header('location: index.php');
-}
-$id_user = $_SESSION['id_user'];
-$nama = $_SESSION['nama'];
-$username = $_SESSION['username'];
-$email = $_SESSION['email'];
-include "koneksi/aksi.php";
-$aksi = new aksi();
-if (isset($_POST['submittambahadmin'])) {
-  $aksi->tambah_admin();
-  unset($_POST['submittambahadmin']);
-}
-$id_user = $_GET['id'];
-  $query = "SELECT * FROM user where id_user = '$id_user'";
-  $result = $koneksi->query($query);
-  $data = $result->fetch_assoc();
+include "../Client.php";
 ?>
-<?php include 'header.php'; 
+<?php include 'header.php'; ?>
 
+<?php
+$row = $client->read_admin($_GET['id_user']);
 ?>
-
-
 
   <main id="main" class="main">
 
@@ -49,7 +25,8 @@ $id_user = $_GET['id'];
           <div class="card ">
             <div class="card-body">
               <h5 class="card-title">Data Admin</h5>
-              <form action="koneksi/update_admin.php" method="post">
+              <form action="../proses.php" method="post">
+                <input type="hidden" name="aksi" value="update_admin">
                 <div id="input-container2">
                   <div class="row">
                     <!-- General Form Elements -->
@@ -57,21 +34,21 @@ $id_user = $_GET['id'];
                     <div class="col-3 mb-3">
                       <label for="inputText" class="col-sm-12 col-form-label">ID User</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" name="id_user" value="<?php echo $data['id_user'] ?>" readonly>
+                        <input type="text" class="form-control" name="id_user" value="<?= $row->id_user ?>" readonly>
                       </div>
                     </div>
 
                     <div class="col-3 mb-3">
                       <label for="inputText" class="col-sm-12 col-form-label">Username</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" name="username"  value="<?php echo $data['username'] ?>">
+                        <input type="text" class="form-control" name="username"  value="<?= $row->username ?>">
                       </div>
                     </div>
 
                     <div class="col-3 mb-3">
                       <label for="inputEmail" class="col-sm-12 col-form-label">Email</label>
                       <div class="col-sm-10">
-                        <input type="email" class="form-control" name="email"  value="<?php echo $data['email'] ?>">
+                        <input type="email" class="form-control" name="email"  value="<?= $row->email ?>">
                       </div>
                     </div>
                   </div>

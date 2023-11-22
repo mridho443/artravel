@@ -34,18 +34,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($aksi == 'create_admin') {
         $dataAdmin = array(
-            'id_user' => $id_user,
-            'username' => $username,
-            'password' => $password,
-            'nama' => $nama,
-            'email' => $email,
+            'username' => $data->username,
+            'password' => $data->password,
+            'nama' => $data->nama,
+            'email' => $data->email,
         );
+
         $database->create_admin($dataAdmin);
     } elseif ($aksi == 'update_admin') {
         $dataAdmin = array(
-            'username' => $username,
-            'email' => $email,
-            'id_user' => $id_user,
+            'username' => $data->username,
+            'email' => $data->email,
+            'id_user' => $data->id_user,
         );
         $database->update_admin($dataAdmin);
     } elseif ($aksi == 'delete_admin') {

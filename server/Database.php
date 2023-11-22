@@ -38,8 +38,8 @@ class Database
     }
 
     public function create_admin($data){
-        $query = $this->conn->prepare("INSERT IGNORE INTO user (id_user,username,password,nama,email) VALUES (?,?,?,?,?)");
-        $query->execute(array($data['id_user'],$data['username'],md5($data['password']),$data['nama'],$data['email']));
+        $query = $this->conn->prepare("INSERT IGNORE INTO user (username,password,nama,email) VALUES (?,?,?,?)");
+        $query->execute(array($data['username'],md5($data['password']),$data['nama'],$data['email']));
         $query->closeCursor();
         $query2 = $this->conn->prepare("SELECT * FROM user WHERE username = ? ");
         $query2->execute(array($data['username']));
@@ -57,10 +57,15 @@ class Database
         unset($data,$query);
     }
     public function delete_admin($id_user){
-        $query = $this->conn->prepare("DELETE FROM user WHERE id_user =? ");
+        $query = $this->conn->prepare("DELETE FROM user_role WHERE id_user= ?");
         $query->execute(array($id_user));
         $query->closeCursor();
-        unset($query,$id_user);
+
+
+        $query2 = $this->conn->prepare("DELETE FROM user WHERE id_user =? ");
+        $query2->execute(array($id_user));
+        $query2->closeCursor();
+        unset($query2,$id_user);
     }
 }
 ?>
