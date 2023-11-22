@@ -104,7 +104,7 @@ class Client
 
 }
 
-$url = 'http://192.168.1.102/ARTRAVEL/server/server.php';
+$url = 'http://192.168.162.240/ARTRAVEL/server/server.php';
 // buat objek baru dari class client
 $client = new Client($url);
 ?>
