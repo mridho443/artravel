@@ -39,7 +39,7 @@ include "../Client.php";
               <tbody>
                 <?php
                 $dataAdminAll = $client->read_all_admin();
-                print_r($dataAdminAll);
+      
                 foreach ($dataAdminAll as $row) { ?>
 
                   <tr>
