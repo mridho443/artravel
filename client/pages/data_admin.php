@@ -1,6 +1,10 @@
+<?php
+include "../Client.php";
+?>
 <?php include 'header.php';
 
 ?>
+
 
 <main id="main" class="main">
 
