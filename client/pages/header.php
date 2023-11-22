@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,7 +44,7 @@
 
 <body>
   <!-- ======= Header ======= -->
-  
+
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
@@ -136,26 +134,24 @@
           <span>Profile</span>
         </a>
       </li><!-- End Profile Page Nav -->
-      <?php
-      if(8 ==1){
-        echo '
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="tambah_admin.php">
-                <i class="bi bi-person-plus"></i>
-                <span>Tambah Admin</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link collapsed" href="data_admin.php">
-                <i class="bi bi-person-plus"></i>
-                <span>Data Admin</span>
-              </a>
-            </li>
-            ';
-      }
-      
-      ?>
- 
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="tambah_admin.php">
+          <i class="bi bi-person-plus"></i>
+          <span>Tambah Admin</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="data_admin.php">
+          <i class="bi bi-person-plus"></i>
+          <span>Data Admin</span>
+        </a>
+      </li>
+
+
+
+
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tambah_bus_hotel_paket" data-bs-toggle="collapse" href="#">
           <i class="bi bi-clipboard-plus"></i><span>Tambah Bus</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -166,7 +162,7 @@
               <i class="bi bi-circle"></i><span>Tambah Bus</span>
             </a>
           </li>
-    
+
         </ul>
       </li><!-- End Tambah bus, hotel dan Paket Nav -->
 
@@ -180,11 +176,11 @@
               <i class="bi bi-circle"></i><span>Data Bus</span>
             </a>
           </li>
-    
+
         </ul>
       </li><!-- End Data bus, hotel dan Paket Nav -->
-      
-      
+
+
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tambahpaket_bus_hotel_paket" data-bs-toggle="collapse" href="#">
@@ -209,12 +205,13 @@
               <i class="bi bi-circle"></i><span>Data Paket Bus</span>
             </a>
           </li>
-         
+
         </ul>
       </li><!-- End data bus, hotel dan Paket Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#verifikasipesan_bus_hotel_paket" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" data-bs-target="#verifikasipesan_bus_hotel_paket" data-bs-toggle="collapse"
+          href="#">
           <i class="bi bi-clipboard-check"></i><span>Verifikasi Bus</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="verifikasipesan_bus_hotel_paket" class="nav-content collapse " data-bs-parent="#sidebar-nav">
@@ -223,13 +220,13 @@
               <i class="bi bi-circle"></i><span>Verifikasi Pesan Bus</span>
             </a>
           </li>
-         
+
         </ul>
       </li><!-- End Tambah bus, hotel dan Paket Nav -->
-    
 
-<?php
-      if(5 == 3){
+
+      <?php
+      if (5 == 3) {
         echo '
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#pesan_bus_hotel_paket" data-bs-toggle="collapse" href="#">
@@ -259,9 +256,9 @@
         </ul>
       </li><!-- End pesan bus, hotel dan Paket Nav -->
       ';
-    }
-    
-    ?>
+      }
+
+      ?>
     </ul>
 
   </aside><!-- End Sidebar-->
