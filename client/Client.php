@@ -420,7 +420,7 @@ class Client
 
 }
 
-$url = 'http://localhost/ARTRAVEL/server/server.php';
+$url = 'http://192.168.35.240/ARTRAVEL/server/server.php';
 // buat objek baru dari class client
 $client = new Client($url);
 ?>
