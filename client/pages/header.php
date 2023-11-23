@@ -8,7 +8,7 @@ session_start();
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Users / Profile - Ridho Travel</title>
+  <title>Users / Profile - AR Travel</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -53,7 +53,7 @@ session_start();
     <div class="d-flex align-items-center justify-content-between">
       <a href="#" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">Ridho travel</span>
+        <span class="d-none d-lg-block">AR travel</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->

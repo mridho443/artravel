@@ -129,7 +129,7 @@ elseif ($_POST['aksi'] == 'create_paket_bus') {
         "aksi" => $_GET['aksi']
     );
     $client->delete_paket_bus($data);
-    header('location:pages/data_paketbus.php');
+    // header('location:pages/data_paketbus.php');
 } 
 
 //PESAN BUS

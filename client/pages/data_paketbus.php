@@ -67,7 +67,7 @@ include "../Client.php";
                       <a href="update_paketbus.php?id_paketbus=<?= $row->id_paketbus ?>" class="btn btn-sm btn-warning"><i
                           class="fas fa-fw fa-edit"></i>Update</a>
                       <a href="../proses.php?aksi=delete_paket_bus&id_paketbus=<?= $row->id_paketbus ?>" class="btn btn-sm btn-danger"
-                        onclick="return confirm('Are you sure?')"><i class="fas fa-fw fa-trash"></i>Delete</a>
+                     ><i class="fas fa-fw fa-trash"></i>Delete</a>
                     </td>
 
                     <?php echo "</tr>";

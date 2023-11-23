@@ -51,7 +51,7 @@
               <div class="d-flex justify-content-center py-4">
                 <a href="index.php" class="logo d-flex align-items-center w-auto">
                   <img src="assets/img/logo.png" alt="">
-                  <span class="d-none d-lg-block">Ridho Travel</span>
+                  <span class="d-none d-lg-block">AR Travel</span>
                 </a>
               </div><!-- End Logo -->
 
@@ -116,7 +116,7 @@
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                Designed by <a href="https://siakad.uin-malang.ac.id/">Muhammad Ridho</a>
+                Designed by <a href="https://siakad.uin-malang.ac.id/">AR</a>
               </div>
 
             </div>
