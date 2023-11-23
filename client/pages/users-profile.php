@@ -18,7 +18,7 @@
 
               <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
               <h2>
-                <?php echo "" ?>
+                <?= $_SESSION['nama']  ?>
               </h2>
               <!-- <div class="social-links mt-2">
                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -63,21 +63,21 @@
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">Username</div>
                     <div class="col-lg-9 col-md-8">
-                      <?php echo "" ?>
+                      <?= $_SESSION['username'] ?>
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Full Name</div>
                     <div class="col-lg-9 col-md-8">
-                      <?php echo "" ?>
+                      <?= $_SESSION['nama']  ?>
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Email</div>
                     <div class="col-lg-9 col-md-8">
-                      <?php echo "" ?>
+                      <?= $_SESSION['email']  ?>
                     </div>
                   </div>
 

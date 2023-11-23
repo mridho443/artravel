@@ -1,27 +1,11 @@
 <?php
-session_start();
-include "koneksi/koneksi.php";
-$isLogin = $_SESSION['isLoginUser'] ?? "";
-if ($isLogin != "logged") {
-    header('location: index.php');
-}
-$id_role = $_SESSION['id_role'];
-if ($id_role == 3) {
-    header('location: index.php');
-  }
-$id_user = $_SESSION['id_user'];
-$nama = $_SESSION['nama'];
-$username = $_SESSION['username'];
-$email = $_SESSION['email'];
-
-$id_bus = $_GET['id'];
-  $query = "SELECT * FROM bus where id_bus = '$id_bus'";
-  $result = $koneksi->query($query);
-  $data = $result->fetch_assoc();
-?>
+include "../Client.php";
 ?>
 <?php include 'header.php'; 
+?>
 
+<?php
+$row = $client->read_bus($_GET['id_bus']);
 ?>
 
     <main id="main" class="main">
@@ -42,7 +26,8 @@ $id_bus = $_GET['id'];
                     <div class="card ">
                         <div class="card-body">
                             <h5 class="card-title">Update Bus</h5>
-                            <form action="koneksi/update_bus.php" method="post">
+                            <form action="../proses.php" method="post">
+                            <input type="hidden" name="aksi" value="update_bus">
                                 <div id="input-container">
                                     <div class="row">
                                         <!-- General Form Elements -->
@@ -50,26 +35,27 @@ $id_bus = $_GET['id'];
                                         <div class="col-3 mb-3">
                                             <label for="inputText" class="col-sm-12 col-form-label">ID Bus</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="id_bus" value="<?php echo $data['id_bus'] ?>" readonly>
+                                                <input type="text" class="form-control" name="id_bus" value="<?= $row->id_bus ?>" readonly>
                                             </div>
                                         </div>
+                                       
                                         <div class="col-3 mb-3">
                                             <label for="inputText" class="col-sm-12 col-form-label">Nama Bus</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="nama_bus" value="<?php echo $data['nama_bus'] ?>">
+                                                <input type="text" class="form-control" name="nama_bus" value="<?= $row->nama_bus ?>">
                                             </div>
                                         </div>
 
                                         <div class="col-3 mb-3">
                                             <label for="inputText" class="col-sm-12 col-form-label">Plat Bus</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="plat_bus" value="<?php echo $data['plat_bus'] ?>">
+                                                <input type="text" class="form-control" name="plat_bus" value="<?= $row->plat_bus ?>">
                                             </div>
                                         </div>
                                         <div class="col-3 mb-3">
                                             <label for="inputText" class="col-sm-12 col-form-label">Status Bus</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="status_bus" value="<?php echo $data['status_bus'] ?>">
+                                                <input type="text" class="form-control" name="status_bus" value="<?= $row->status_bus ?>">
                                             </div>
                                         </div>
                                     </div>

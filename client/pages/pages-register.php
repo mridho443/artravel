@@ -64,10 +64,11 @@
                     <p class="text-center small">Enter your personal details to create account</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" action="koneksi/aksi_register.php" method="post">
+                  <form class="row g-3 needs-validation" action="../proses.php" method="post">
+                    <input type="hidden" name='aksi' value='register'>
                     <div class="col-12">
                       <label for="yourName" class="form-label">Your Name</label>
-                      <input type="text" name="name" class="form-control" id="yourName" required>
+                      <input type="text" name="nama" class="form-control" id="yourName" required>
                       <div class="invalid-feedback">Please, enter your name!</div>
                     </div>
 

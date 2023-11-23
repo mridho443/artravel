@@ -1,3 +1,3 @@
 <?php
-header("location:pages/users-profile.php")
+header("location:pages/pages-login.php")
 ?>

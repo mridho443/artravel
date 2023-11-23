@@ -64,7 +64,8 @@
                     <p class="text-center small">Enter your username & password to login</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" action="koneksi/aksi_login.php?aksi=in" method="post">
+                  <form class="row g-3 needs-validation" action="../proses.php" method="post">
+                    <input type="hidden" name='aksi' value="login">
 
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Username</label>

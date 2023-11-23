@@ -1,5 +1,5 @@
-<?php
-session_start();
+
+<!-- session_start();
 include "koneksi/koneksi.php";
 $isLogin = $_SESSION['isLoginUser'] ?? "";
 if ($isLogin != "logged") {
@@ -20,7 +20,9 @@ if(isset($_POST['Confirm'])){
   $aksi->confirmbus($_POST['id_pesanbus']);
   unset($_POST['Confirm']);
   header("Refresh:1;");
-}
+} -->
+<?php
+include "../Client.php";
 ?>
 <?php include 'header.php'; 
 
@@ -64,37 +66,40 @@ if(isset($_POST['Confirm'])){
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($datapesanbusall as $key => $value) {
-                        echo "
+                    $dataAllPesanBus = $client->read_all_pesan_bus();
+                    foreach ($dataAllPesanBus as $row) {?>
+                        
                             <tr>
-                                <th scope='row'>{$value['id_pesanbus']}</th>
-                                <td>{$value['id_paketbus']}</td>
-                                <td>{$value['nama_bus']}</td>
-                                <td>{$value['rute_bus']}</td>
-                                <td>{$value['jadwal_bus']}</td>
-                                <td>{$value['harga_bus']}</td>
-                                <td>{$value['status_pesanbus']}</td>
+                                <th scope='row'><?=$row->id_pesanbus?></th>
+                                <td><?=$row->id_paketbus?></td>
+                                <td><?=$row->nama_bus?></td>
+                                <td><?=$row->rute_bus?></td>
+                                <td><?=$row->jadwal_bus?></td>
+                                <td><?=$row->harga_bus?></td>
+                                <td><?=$row->status_pesanbus?></td>
 
-                        ";
-                    
-                        if ($value['status_pesanbus'] == "PROSES VERIFIKASI") {
-                            echo "
-                                <form action='verifikasipesan_bus.php' method='post' enctype='multipart/form-data'>
-                                <td><a href=\"koneksi/download_bus.php?id=" . $value['id_pesanbus'] . "\">Download</a></td>
+                     
+                    <?php
+                        if ($row->status_pesanbus == "PROSES VERIFIKASI") {?>
+                        
+                                <form action='../proses.php?aksi=confirm&id_pesanbus=<?=$row->id_pesanbus?>' enctype='multipart/form-data'>
+                                  <input type="hidden" name='aksi' value='confirm'>
+                                <td><a href='<?=$row->bukti_bayarbus?>' target='_blank'>Read Bukti</a></td>
+
                                 <td>
-                                    <input type='hidden' name='id_pesanbus' value='{$value['id_pesanbus']}'>
+                                    <input type='hidden' name='id_pesanbus' value='<?=$row->id_pesanbus?>'>
                                     <input type='submit' value='Confirm' name='Confirm' class='btn btn-primary' >
                                 </td>
                                 </form>
-                            ";
-                        }else if ($value['status_pesanbus'] == "BELUM BAYAR") {
+                          <?php
+                        }else if ($row->status_pesanbus == "BELUM BAYAR") {
                             echo "
-                                <td>
+                                <td>  
                                     USER BELUM BAYAR!
                                 </td>
                             ";
 
-                        } else if ($value['status_pesanbus'] == "SUDAH BAYAR") {
+                        } else if ($row->status_pesanbus== "SUDAH BAYAR") {
                             echo "
                                 <td>
                                     PEMBAYARAN TELAH DI KONFIRMASI!

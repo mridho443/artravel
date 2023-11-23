@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,14 +67,14 @@
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">
-              <?php echo "" ?>
+              <?php echo $_SESSION['username'] ?>
             </span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6>
-                <?php echo "" ?>
+                <?php echo $_SESSION['username'] ?>
               </h6>
               <span>
 
@@ -106,7 +109,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="koneksi/aksi_login.php?aksi=out">
+              <a class="dropdown-item d-flex align-items-center" href="../proses.php?aksi=logout">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -135,7 +138,9 @@
         </a>
       </li><!-- End Profile Page Nav -->
 
-
+      <?php
+      if ($_SESSION['id_role'] == '1') {
+        echo '
       <li class="nav-item">
         <a class="nav-link collapsed" href="tambah_admin.php">
           <i class="bi bi-person-plus"></i>
@@ -148,10 +153,13 @@
           <span>Data Admin</span>
         </a>
       </li>
+      ';
+      }
+      ?>
 
-
-
-
+      <?php
+      if ($_SESSION['id_role'] == '1' || $_SESSION['id_role'] == '2') {
+        echo '
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tambah_bus_hotel_paket" data-bs-toggle="collapse" href="#">
           <i class="bi bi-clipboard-plus"></i><span>Tambah Bus</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -223,10 +231,11 @@
 
         </ul>
       </li><!-- End Tambah bus, hotel dan Paket Nav -->
-
-
+      ';
+      }
+      ?>
       <?php
-      if (5 == 3) {
+      if ($_SESSION['id_role'] == 3) {
         echo '
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#pesan_bus_hotel_paket" data-bs-toggle="collapse" href="#">

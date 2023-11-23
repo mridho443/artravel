@@ -1,5 +1,5 @@
-<?php
-session_start();
+
+<!-- session_start();
 include "koneksi/koneksi.php";
 $isLogin = $_SESSION['isLoginUser'] ?? "";
 if ($isLogin != "logged") {
@@ -17,8 +17,11 @@ $databus = $aksi->getpaket_bus();
 if(isset($_POST['submitpesanbus'])){
     $aksi->pesanbus($id_user,$_POST['id_paketbus']);
     unset($_POST['submitpesanbus']);
-}
+} -->
+<?php
+include "../Client.php";
 ?>
+
 <?php include 'header.php'; 
 
 ?>
@@ -59,18 +62,21 @@ if(isset($_POST['submitpesanbus'])){
                 </thead>
                 <tbody>
                     <?php
-                    foreach($databus as $key => $value){
-                        echo "
+                    $dataAllPaketBus = $client->read_all_paket_bus();
+                    foreach($dataAllPaketBus as $row){ ?>
+                        
                         <tr>
-                            <th scope='row'>{$value['id_paketbus']}</th>
-                            <td>{$value['nama_bus']}</td>
-                            <td>{$value['plat_bus']}</td>
-                            <td>{$value['rute_bus']}</td>
-                            <td>{$value['jadwal_bus']}</td>
-                            <td>{$value['harga_bus']}</td>
+                            <th scope='row'><?= $row->id_paketbus?></th>
+                            <td><?= $row->nama_bus?></td>
+                            <td><?= $row->plat_bus?></td>
+                            <td><?= $row->rute_bus?></td>
+                            <td><?= $row->jadwal_bus?></td>
+                            <td><?= $row->harga_bus?></td>
+                        
                             <td>
-                                <form action='pesan_bus.php' method='post'>
-                                    <input type='hidden' name='id_paketbus' value='{$value['id_paketbus']}'>
+                                <form action='../proses.php' method='post'>
+                                    <input type='hidden' name='aksi' value='create_pesan_bus'>
+                                    <input type='hidden' name='id_paketbus' value='<?= $row->id_paketbus?>'>
                                     <button type='submit' name='submitpesanbus' class='btn btn-primary'>Pesan</button>
                                 </form>
                             </td>
@@ -78,10 +84,10 @@ if(isset($_POST['submitpesanbus'])){
                         </tr>
                         
                         
-                        ";
+                        
 
-                    }
-                    ?>
+                   <?php }?> 
+                    
                   
                 </tbody>
               </table>

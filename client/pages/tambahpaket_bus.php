@@ -1,24 +1,5 @@
 <?php
-session_start();
-include "koneksi/koneksi.php";
-$isLogin = $_SESSION['isLoginUser'] ?? "";
-if ($isLogin != "logged") {
-    header('location: index.php');
-}
-$id_role = $_SESSION['id_role'];
-if ($id_role == 3) {
-    header('location: index.php');
-  }
-$id_user = $_SESSION['id_user'];
-$nama = $_SESSION['nama'];
-$username = $_SESSION['username'];
-$email = $_SESSION['email'];
-include "koneksi/aksi.php";
-$aksi = new aksi();
-if (isset($_POST['submittambahpaketbus'])) {
-    $aksi->tambahpaket_bus();
-    unset($_POST['submittambahpaketbus']);
-}
+include "../Client.php";
 ?>
 <?php include 'header.php'; 
 
@@ -43,7 +24,9 @@ if (isset($_POST['submittambahpaketbus'])) {
                     <div class="card ">
                         <div class="card-body">
                             <h5 class="card-title">Data Paket Bus</h5>
-                            <form action="tambahpaket_bus.php" method="post">
+                            <form action="../proses.php" method="post">
+                            <input type="hidden" name="aksi" value="create_paket_bus">
+
                                 <div id="input-container">
                                     <div class="row">
                                         <!-- General Form Elements -->
@@ -51,34 +34,14 @@ if (isset($_POST['submittambahpaketbus'])) {
                                         <div class="col-3 mb-3">
                                             <label for="inputText" class="col-sm-12 col-form-label">Bus</label>
                                             <div class="col-sm-10">
-                                            <select class="form-select" id="bus" name="id_bus[]" required>
+                                            <select class="form-select" id="bus" name="id_bus" required>
                                                 <option selected hidden value=""></option>
                                                 <?php
-                                                include "koneksi/koneksi.php";
+                                                $dataAllBus = $client->read_all_bus();
 
-                                                $sql = "SELECT * FROM bus";
-
-                                                $result = $koneksi->query($sql);
-                                                $data = array();
-
-                                                if ($result->num_rows > 0) {
-                                                    // output data of each row
-                                                    while ($row = $result->fetch_assoc()) {
-
-                                                        $data[] = array(
-                                                            'id_bus' => $row["id_bus"],
-                                                            'nama_bus' => $row["nama_bus"],
-                                                        );
-                                                    }
-                                                } else {
-                                                    die("Can't get data User from database");
-                                                }
-
-                                                $koneksi->close();
-
-                                                foreach ($data as $value){
-                                                    echo "<option value='{$value['id_bus']}'>{$value['nama_bus']}</option>";
-                                                }
+                                                foreach ($dataAllBus as $row){?>
+                                                    <option value='<?= $row->id_bus?>'><?=$row->nama_bus?></option>
+                                                <?php }
                                                 ?>
                                             </select>
                                             </div>
@@ -87,19 +50,19 @@ if (isset($_POST['submittambahpaketbus'])) {
                                         <div class="col-3 mb-3">
                                             <label for="inputText" class="col-sm-12 col-form-label">Rute Bus</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="rute_bus[]">
+                                                <input type="text" class="form-control" name="rute_bus">
                                             </div>
                                         </div>
                                         <div class="col-3 mb-3">
                                             <label for="inputText" class="col-sm-12 col-form-label">Jadwal Bus</label>
                                             <div class="col-sm-10">
-                                                <input type="date" class="form-control" name="jadwal_bus[]">
+                                                <input type="date" class="form-control" name="jadwal_bus">
                                             </div>
                                         </div>
                                         <div class="col-3 mb-3">
                                             <label for="inputText" class="col-sm-12 col-form-label">Harga Bus</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="harga_bus[]">
+                                                <input type="text" class="form-control" name="harga_bus">
                                             </div>
                                         </div>
                                     </div>
@@ -108,7 +71,7 @@ if (isset($_POST['submittambahpaketbus'])) {
                                 <div class="row mb-3">
                                     <div class="col-sm-10">
                                         <button type="submit" name="submittambahpaketbus" class="btn btn-primary">Submit Form</button>
-                                        <button type="button" id="add-input" class="btn btn-primary">Add new</button>
+               
                                     </div>
                                 </div>
 
@@ -138,75 +101,6 @@ if (isset($_POST['submittambahpaketbus'])) {
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
-
-    <script>
-        // JavaScript code to dynamically add input fields
-        const addInputButton = document.getElementById('add-input');
-        const inputContainer = document.getElementById('input-container');
-
-        addInputButton.addEventListener('click', function () {
-            const newRow = document.createElement('div');
-            newRow.className = 'row';
-
-            newRow.innerHTML = `
-                                        <div class="col-3 mb-3">
-                                            <label for="inputText" class="col-sm-12 col-form-label">Bus</label>
-                                            <div class="col-sm-10">
-                                            <select class="form-select" id="bus" name="id_bus[]" required>
-                                                <option selected hidden value=""></option>
-                                                <?php
-                                                include "koneksi/koneksi.php";
-
-                                                $sql = "SELECT * FROM bus";
-
-                                                $result = $koneksi->query($sql);
-                                                $data = array();
-
-                                                if ($result->num_rows > 0) {
-                                                    // output data of each row
-                                                    while ($row = $result->fetch_assoc()) {
-
-                                                        $data[] = array(
-                                                            'id_bus' => $row["id_bus"],
-                                                            'nama_bus' => $row["nama_bus"],
-                                                        );
-                                                    }
-                                                } else {
-                                                    die("Can't get data User from database");
-                                                }
-
-                                                $koneksi->close();
-
-                                                foreach ($data as $value){
-                                                    echo "<option value='{$value['id_bus']}'>{$value['nama_bus']}</option>";
-                                                }
-                                                ?>
-                                            </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-3 mb-3">
-                                            <label for="inputText" class="col-sm-12 col-form-label">Rute Bus</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="rute_bus[]">
-                                            </div>
-                                        </div>
-                                        <div class="col-3 mb-3">
-                                            <label for="inputText" class="col-sm-12 col-form-label">Jadwal Bus</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="jadwal_bus[]">
-                                            </div>
-                                        </div>
-                                        <div class="col-3 mb-3">
-                                            <label for="inputText" class="col-sm-12 col-form-label">Harga Bus</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="harga_bus[]">
-                                            </div>
-                                        </div>
-        `;
-            inputContainer.appendChild(newRow);
-        });
-    </script>
 
 
 </body>
