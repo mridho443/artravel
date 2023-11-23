@@ -54,7 +54,7 @@ $row = $client->read_paket_bus($_GET['id_paketbus']);
                                         <div class="col-3 mb-3">
                                             <label for="inputText" class="col-sm-12 col-form-label">Jadwal Bus</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="jadwal_bus" value="<?=$row->jadwal_bus?>">
+                                                <input type="date" class="form-control" name="jadwal_bus" value="<?=$row->jadwal_bus?>">
                                             </div>
                                         </div>
                                         <div class="col-3 mb-3">
