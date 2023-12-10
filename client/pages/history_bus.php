@@ -28,6 +28,10 @@ include "../Client.php";
           <div class="card-body">
             <h5 class="card-title">Pesan Bus</h5>
 
+       
+            <a href='history_bus_cetak.php' class='btn btn-sm btn-success'><i class='fas fa-fw fa-trash'></i>Cetak History</a>
+          
+
             <!-- Table with stripped rows -->
             <table class="table datatable">
               <thead>
